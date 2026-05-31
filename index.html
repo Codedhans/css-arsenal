@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Arsenal - Level Up Your CSS Skills</title>
+    <link rel="stylesheet" href="css/retro-theme.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Main Game Container -->
+    <div class="game-container">
+        <!-- Header -->
+        <header class="retro-header">
+            <div class="header-content">
+                <h1 class="game-title">CSS ARSENAL</h1>
+                <p class="game-subtitle">[ LEVEL UP YOUR CSS SKILLS ]</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-label">POINTS:</span>
+                    <span class="stat-value" id="pointsDisplay">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">LEVEL:</span>
+                    <span class="stat-value" id="levelDisplay">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">DIFFICULTY:</span>
+                    <span class="stat-value" id="difficultyDisplay">BEGINNER</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-main">
+            <!-- Left Panel - Game Board -->
+            <section class="game-board">
+                <div class="board-header">
+                    <h2 class="board-title">[ CHALLENGE ]</h2>
+                </div>
+
+                <!-- Challenge Question -->
+                <div class="challenge-section" id="challengeSection">
+                    <div class="question-display">
+                        <p class="question-text" id="questionText">Loading challenge...</p>
+                        <p class="question-context" id="questionContext"></p>
+                    </div>
+
+                    <!-- Image Viewer -->
+                    <div class="image-viewer">
+                        <img id="challengeImage" src="" alt="Challenge Image" class="challenge-img">
+                        <div class="image-placeholder" id="imagePlaceholder">
+                            <p>[ IMAGE LOADING ]</p>
+                        </div>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div class="answer-options">
+                        <button class="option-btn" id="optionA" data-option="A">
+                            <span class="option-letter">A</span>
+                            <span class="option-text" id="textA"></span>
+                        </button>
+                        <button class="option-btn" id="optionB" data-option="B">
+                            <span class="option-letter">B</span>
+                            <span class="option-text" id="textB"></span>
+                        </button>
+                        <button class="option-btn" id="optionC" data-option="C">
+                            <span class="option-letter">C</span>
+                            <span class="option-text" id="textC"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Over / Welcome Screen -->
+                <div class="welcome-screen" id="welcomeScreen">
+                    <h2 class="welcome-title">WELCOME TO CSS ARSENAL</h2>
+                    <p class="welcome-text">Master CSS and build epic projects!</p>
+                    <button class="retro-btn primary" id="startGameBtn">START GAME</button>
+                    <button class="retro-btn secondary" id="continueGameBtn">CONTINUE</button>
+                </div>
+            </section>
+
+            <!-- Right Panel - Project Progress & Stats -->
+            <aside class="sidebar">
+                <!-- Project Panel -->
+                <div class="project-panel">
+                    <div class="panel-header">
+                        <h3>[ CURRENT PROJECT ]</h3>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-name" id="projectName">Profile Page Builder</p>
+                        <p class="project-difficulty" id="projectDifficulty">Beginner</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="projectProgress" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">0 / 100 points</p>
+                    <button class="retro-btn primary" id="startProjectBtn" disabled>START PROJECT</button>
+                </div>
+
+                <!-- Stats Panel -->
+                <div class="stats-panel">
+                    <div class="panel-header">
+                        <h3>[ STATISTICS ]</h3>
+                    </div>
+                    <div class="stats-list">
+                        <div class="stat-row">
+                            <span class="stat-name">Correct Answers:</span>
+                            <span class="stat-number" id="correctAnswers">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Total Questions:</span>
+                            <span class="stat-number" id="totalQuestions">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Accuracy:</span>
+                            <span class="stat-number" id="accuracy">0%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Current Streak:</span>
+                            <span class="stat-number" id="streak">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difficulty Selector -->
+                <div class="difficulty-selector">
+                    <div class="panel-header">
+                        <h3>[ DIFFICULTY ]</h3>
+                    </div>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn active" data-difficulty="beginner">BEGINNER</button>
+                        <button class="difficulty-btn" data-difficulty="intermediate">INTERMEDIATE</button>
+                        <button class="difficulty-btn" data-difficulty="advanced">ADVANCED</button>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <button class="retro-btn danger" id="resetGameBtn">RESET GAME</button>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content retro-modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">CORRECT!</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message" id="modalMessage">Great job! You earned points.</p>
+                <p class="modal-explanation" id="modalExplanation"></p>
+                <p class="points-earned" id="pointsEarned">+10 POINTS</p>
+            </div>
+            <div class="modal-footer">
+                <button class="retro-btn primary" id="nextChallengeBtn">NEXT CHALLENGE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModalOverlay">
+        <div class="modal-content retro-modal project-modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="projectModalTitle">PROJECT UNLOCKED!</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message" id="projectModalMessage">You've unlocked a new project!</p>
+                <div class="project-details" id="projectDetails"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="retro-btn primary" id="startNewProjectBtn">START PROJECT</button>
+                <button class="retro-btn secondary" id="continuePlayingBtn">KEEP PLAYING</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Editor Modal -->
+    <div class="modal-overlay" id="projectEditorOverlay">
+        <div class="modal-content retro-modal project-editor-modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="projectEditorTitle">Profile Page Builder</h2>
+                <button class="close-btn" id="closeProjectEditor">&times;</button>
+            </div>
+            <div class="modal-body project-editor-body">
+                <div class="editor-container">
+                    <div class="editor-panel">
+                        <h3>HTML TEMPLATE</h3>
+                        <textarea id="projectHTML" readonly></textarea>
+                    </div>
+                    <div class="editor-panel">
+                        <h3>YOUR CSS</h3>
+                        <textarea id="projectCSS" placeholder="Write your CSS here..."></textarea>
+                    </div>
+                    <div class="preview-panel">
+                        <h3>PREVIEW</h3>
+                        <div class="preview-container" id="previewContainer"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="retro-btn primary" id="submitProjectBtn">SUBMIT PROJECT</button>
+                <button class="retro-btn secondary" id="closeProjectEditorBtn">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/questionDatabase.js"></script>
+    <script src="js/storageManager.js"></script>
+    <script src="js/unsplashAPI.js"></script>
+    <script src="js/uiManager.js"></script>
+    <script src="js/gameEngine.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+/* Retro 80s Arcade Theme */
+
+:root {
+    --primary-color: #00ff00;
+    --secondary-color: #ff00ff;
+    --tertiary-color: #00ffff;
+    --bg-dark: #0a0e27;
+    --bg-darker: #050810;
+    --text-primary: #00ff00;
+    --text-secondary: #ff00ff;
+    --text-tertiary: #00ffff;
+    --border-color: #00ff00;
+    --error-color: #ff0055;
+    --success-color: #00ff00;
+    --warning-color: #ffaa00;
+    --glow-intensity: 0 0 10px rgba(0, 255, 0, 0.5);
+    --glow-intensity-secondary: 0 0 10px rgba(255, 0, 255, 0.5);
+    --font-family: 'Courier New', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+    box-shadow: var(--glow-intensity);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tertiary-color);
+}
+
+/* Text Selection */
+::selection {
+    background: var(--secondary-color);
+    color: var(--bg-dark);
+}
+
+/* Retro Button Base */
+.retro-btn {
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: 3px solid var(--primary-color);
+    background: var(--bg-dark);
+    color: var(--primary-color);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    box-shadow: var(--glow-intensity);
+    position: relative;
+    overflow: hidden;
+}
+
+.retro-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.retro-btn:hover {
+    left: 0;
+    color: var(--bg-dark);
+    box-shadow: var(--glow-intensity), inset 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.retro-btn:active {
+    transform: scale(0.98);
+}
+
+.retro-btn.primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.retro-btn.primary::before {
+    background: var(--primary-color);
+}
+
+.retro-btn.secondary {
+    border-color: var(--tertiary-color);
+    color: var(--tertiary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.retro-btn.secondary::before {
+    background: var(--tertiary-color);
+}
+
+.retro-btn.danger {
+    border-color: var(--error-color);
+    color: var(--error-color);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+}
+
+.retro-btn.danger::before {
+    background: var(--error-color);
+}
+
+.retro-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Retro Header */
+.retro-header {
+    background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(0, 255, 0, 0.1) 100%);
+    border-bottom: 3px solid var(--primary-color);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--glow-intensity), inset 0 1px 0 rgba(0, 255, 0, 0.2);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-content h1 {
+    font-size: 32px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.header-content p {
+    font-size: 12px;
+    color: var(--tertiary-color);
+    letter-spacing: 2px;
+}
+
+.header-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--tertiary-color);
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 18px;
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--secondary-color);
+}
+
+/* Retro Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 8, 16, 0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.retro-modal {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+    border: 3px solid var(--primary-color);
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 
+        0 0 20px var(--primary-color),
+        0 0 40px var(--secondary-color),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    animation: scanlines 0.15s infinite;
+}
+
+@keyframes scanlines {
+    0% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 10px var(--primary-color); }
+    100% { text-shadow: 0 0 0 transparent; }
+}
+
+.modal-header {
+    border-bottom: 2px solid var(--tertiary-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.modal-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    color: var(--error-color);
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    text-shadow: 0 0 10px var(--error-color);
+    transform: scale(1.2);
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-message {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.modal-explanation {
+    font-size: 13px;
+    color: var(--tertiary-color);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.points-earned {
+    font-size: 24px;
+    color: var(--secondary-color);
+    text-align: center;
+    text-shadow: 0 0 10px var(--secondary-color);
+    margin: 15px 0;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Text Animation */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.flicker {
+    animation: flicker 0.1s infinite;
+}
